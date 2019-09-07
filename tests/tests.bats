@@ -32,9 +32,9 @@ function teardown () {
     [[ ${status} -eq 0 ]]
 }
 
-# 10: vars
-@test "Test access and check variables" {
-    run ansible-playbook -v -i $INVENTORY vars.yml
+# 10: test access
+@test "Test if we can access to target network nodes" {
+    run ansible-playbook -v -i $INVENTORY test_access.yml
     [[ ${status} -eq 0 ]]
 }
 
