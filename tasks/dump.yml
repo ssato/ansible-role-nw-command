@@ -1,0 +1,32 @@
+---
+- block:
+    - name: Get the timestamp
+      command: date +%F_%H.%M.%S
+      changed_when: false
+      register: date_res
+      delegate_to: localhost
+
+    - name: Set the output file path
+      set_fact:
+        rntebr_dump_path: >-
+          {{ d(rntebr_dump_path_prefix +
+             date_res.stdout_lines.0 + ".json") }}
+  when:
+    - rntebr_dump_path is undefined or not(rntebr_dump_path)
+
+- name: Dump the result
+  copy:
+    dest: "{{ rntebr_dump_path }}"
+    content: |
+      {"rntebr_res": {{ rntebr_res | to_nice_json }}
+      }
+  delegate_to: localhost
+
+- name: Test if the file was dumped
+  command: >-
+    {{ ansible_python_interpreter | d('python') }} -m json.tool
+      {{ rntebr_dump_path }}
+  changed_when: false
+  delegate_to: localhost
+
+# vim:sw=2:ts=2:et:

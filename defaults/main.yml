@@ -1,0 +1,68 @@
+---
+# .. note:: rntebr is an abbreviation of 'role-nw-test-existence-by-regex'
+#
+# Mode = 'dump' | 'dryrun' | * 
+# - dump: Dump mode to save reference data
+# - dryrun: Test (dryrun) mode
+# - normal or *: Normal mode to run commands and tests
+rntebr_mode: normal
+
+# Default:
+# - rntebr_dump_path_prefix: see below
+# - rntebr_dump_path: {{ dump_path_prefix }}< timestamp >.json.
+rntebr_dump_path_prefix: >-
+  files/{{ inventory_hostname }}_
+
+# This will toggle the behavior of this role.
+# - If true, this role try to find targets and will be success if found.
+# - If false, this role try to find targets and will be success if NOT found.
+rntebr_targets_should_be_found: true
+
+# The command to run on target nodes to find target objects
+#
+# Examples:
+#
+# # Cisco (ios): list interfaces
+# rntebr_command: show ip interface brief | inc [0-9]+
+#
+# # Juniper (junos): list interfaces
+# rntebr_command: show interfaces terse
+#
+rntebr_command: ''
+
+# If true, it fails immediately if running `rntebr_command` fails.
+rntebr_ignore_errors: false
+
+# Examples:
+#
+# # cisco (ios):
+# rntebr_targets_patterns:
+#   - ^Loopback0.*192.168.2.102.*up.*up
+#
+# # Juniper (junos):
+# rntebr_targets_patterns:
+#   - ^ge-0/0/1.120.*up.*up.*10.0.0.1.*
+#
+rntebr_targets_patterns: []
+
+# placeholder to save results
+rntebr_res: {}
+
+# Ansible module specific options:
+# ios_command:
+ios_command:
+  interval: 1
+  match: all
+  retries: 10
+  wait_for: []
+
+# junos:
+junos_command:
+  display: >-
+    {{ 'xml' if ansible_connection == 'netconf' else 'text' }}
+  interval: 1
+  match: all
+  retries: 10
+  wait_for: []
+
+# vim:sw=2:ts=2:et:

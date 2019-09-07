@@ -1,0 +1,15 @@
+---
+# .. seealso:: `ansible-doc ios_command`
+- name: >-
+    Run command '{{ rntebr_command }}' and get results
+  ios_command:
+    commands:
+      - "{{ rntebr_command }}"
+    interval: "{{ ios_command.interval | d(1) }}"
+    match: "{{ ios_command.match | d('all') }}"
+    retries: "{{ ios_command.retries | d(10) }}"
+    wait_for: "{{ ios_command.wait_for | d([]) }}"
+  ignore_errors: "{{ rntebr_ignore_errors | d(false) }}"
+  register: rntebr_res
+
+# vim:sw=2:ts=2:et:

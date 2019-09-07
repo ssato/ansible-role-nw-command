@@ -1,0 +1,33 @@
+---
+- name: Select matched lines in the rntebr_result
+  set_fact:
+    _matched_lines: >-
+      {{ rntebr_res.stdout_lines.0 |
+         map('regex_search', _pattern) |
+         select | list }}
+
+- name: >-
+    Test if the target object was found: {{ _pattern }}
+  assert:
+    that:
+      - _matched_lines | length > 0
+    fail_msg: |
+      _pattern: {{ _pattern }}
+      _matched_lines: {{ _matched_lines | to_nice_json }}
+      rntebr_res: {{ rntebr_res | to_nice_json }}
+  when:
+    - rntebr_targets_should_be_found
+
+- name: >-
+    Test if the target object was NOT found: {{ _pattern }}
+  assert:
+    that:
+      - _matched_lines | length == 0
+    fail_msg: |
+      _pattern: {{ _pattern }}
+      _matched_lines: {{ _matched_lines | to_nice_json }}
+      rntebr_res: {{ rntebr_res | to_nice_json }}
+  when:
+    - not(rntebr_targets_should_be_found)
+
+# vim:sw=2:ts=2:et:

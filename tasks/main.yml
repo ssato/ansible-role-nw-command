@@ -1,0 +1,23 @@
+---
+# norma rntebr_mode: pre, {{ ansible_network_os }}_run_command, debug, test
+# dump rntebr_mode: pre, {{ ansible_network_os }}_run_command, debug, dump
+# dryrun rntebr_mode: pre, debug, test
+
+- include_tasks: pre.yml
+- include_tasks: "{{ ansible_network_os }}_run_command.yml"
+  when:
+    - rntebr_mode != 'dryrun'
+
+- include_tasks: debug.yml
+- include_tasks: dump.yml
+  when:
+    - rntebr_mode == 'dump'
+
+- include_tasks: test.yml
+  loop: "{{ rntebr_targets_patterns }}"
+  loop_control:
+    loop_var: _pattern
+  when:
+    - rntebr_mode != 'dump'
+
+# vim:sw=2:ts=2:et:

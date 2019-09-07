@@ -1,0 +1,12 @@
+---
+_hosts:
+  - ios
+rntebr_mode: dryrun
+rntebr_targets_patterns:
+  - .*Version.*
+
+# output file path
+rntebr_dump_path: >-
+  ref/{{ inventory_hostname }}_{{ ansible_network_os }}_ref.out
+
+# vim:sw=2:ts=2:et:

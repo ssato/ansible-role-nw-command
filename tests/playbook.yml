@@ -1,0 +1,8 @@
+---
+- hosts: >-
+    {{ _hosts | d(['ios', 'junos']) }}
+  gather_facts: false
+  roles:
+    - ssato.nw-test-existence-by-regex
+
+# vim:sw=2:ts=2:et:

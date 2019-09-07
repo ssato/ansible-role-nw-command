@@ -1,0 +1,7 @@
+---
+- name: Debug the result
+  debug:
+    var: rntebr_res
+    verbosity: 1
+
+# vim:sw=2:ts=2:et:
