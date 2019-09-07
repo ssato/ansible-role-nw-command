@@ -14,6 +14,17 @@
   when:
     - rntebr_mode != 'dryrun'
 
+- name: Test regex patterns are set when mode is not dump
+  assert:
+    that:
+      - rntebr_targets_patterns | d()
+      - rntebr_targets_patterns is sequence
+      - rntebr_targets_patterns | length > 0
+    fail_msg: |
+      rntebr_targets_patterns: {{ rntebr_targets_patterns | d('undef') }}
+  when:
+    - rntebr_mode != 'dump'
+
 - name: Test variables are OK
   assert:
     that:
@@ -25,15 +36,11 @@
       - rntebr_targets_should_be_found is in [true, false]
       - rntebr_ignore_errors is defined
       - rntebr_ignore_errors is in [true, false]
-      - rntebr_targets_patterns | d()
-      - rntebr_targets_patterns is sequence
-      - rntebr_targets_patterns | length > 0
     fail_msg: |
       rntebr_mode: {{ rntebr_mode | d('undef') }}
       rntebr_dump_path_prefix: {{ rntebr_dump_path_prefix | d('undef') }}
       rntebr_targets_should_be_found:
         {{ rntebr_targets_should_be_found | d('undef') }}
       rntebr_ignore_errors: {{ rntebr_ignore_errors | d('undef') }}
-      rntebr_targets_patterns: {{ rntebr_targets_patterns | d('undef') }}
 
 # vim:sw=2:ts=2:et:
