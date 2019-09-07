@@ -1,0 +1,10 @@
+---
+_hosts:
+  - junos
+
+rntebr_mode: dryrun
+rntebr_targets_should_be_found: true
+rntebr_targets_patterns:
+  - gr-0/0/0
+
+# vim:sw=2:ts=2:et:

@@ -1,0 +1,9 @@
+---
+_hosts:
+  - junos
+rntebr_mode: normal
+rntebr_command: show version
+rntebr_targets_patterns:
+  - .*JUNOS.*
+
+# vim:sw=2:ts=2:et:

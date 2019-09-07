@@ -1,0 +1,10 @@
+---
+_hosts:
+  - ios
+
+rntebr_mode: dryrun
+rntebr_targets_should_be_found: true
+rntebr_targets_patterns:
+  - .*Loopback0.*up.*up
+
+# vim:sw=2:ts=2:et:

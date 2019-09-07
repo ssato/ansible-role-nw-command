@@ -33,7 +33,7 @@ function teardown () {
 }
 
 # 10: test access
-@test "Test if we can access to target network nodes" {
+@test "Test if we can access target network nodes" {
     run ansible-playbook -v -i $INVENTORY test_access.yml
     [[ ${status} -eq 0 ]]
 }
@@ -52,17 +52,58 @@ function teardown () {
 }
 
 # 30: dryrun
-@test "Test w/o running command [ios]" {
+@test "Test version info was shown in the result w/o running command [ios]" {
     run ansible-playbook -v -i $INVENTORY playbook.yml \
         -e @files/30_evars_ios_dryrun.yml \
         -e @ref/ios0_ios_ref.out
     [[ ${status} -eq 0 ]]
 }
 
-@test "Test w/o running command [junos]" {
+@test "Test version info was shown in the result w/o running command [junos]" {
     run ansible-playbook -v -i $INVENTORY playbook.yml \
         -e @files/30_evars_junos_dryrun.yml \
         -e @ref/junos0_junos_ref.out
+    [[ ${status} -eq 0 ]]
+}
+
+# 40: normal
+@test "Test version info was gotten successfully [ios]" {
+    run ansible-playbook -v -i $INVENTORY playbook.yml \
+        -e @files/40_evars_ios_normal.yml
+    [[ ${status} -eq 0 ]]
+}
+
+@test "Test version info was gotten successfully [junos]" {
+    run ansible-playbook -v -i $INVENTORY playbook.yml \
+        -e @files/40_evars_junos_normal.yml
+    [[ ${status} -eq 0 ]]
+}
+
+# 50: dump (interfaces)
+@test "Test dumping interfaces info [ios]" {
+    run ansible-playbook -v -i $INVENTORY playbook.yml \
+        -e @files/50_evars_ios_dump_interfaces.yml
+    [[ ${status} -eq 0 ]]
+}
+
+@test "Test dumping interfaces info [junos]" {
+    run ansible-playbook -v -i $INVENTORY playbook.yml \
+        -e @files/50_evars_junos_dump_interfaces.yml
+    [[ ${status} -eq 0 ]]
+}
+
+# 60: dryrun (interfaces)
+@test "Test interfaces was found in the result w/o running command [ios]" {
+    run ansible-playbook -v -i $INVENTORY playbook.yml \
+        -e @files/60_evars_ios_dryrun_interfaces.yml \
+        -e @ref/ios0_ios_intf_ref.out
+    [[ ${status} -eq 0 ]]
+}
+
+@test "Test interfaces was found in the result w/o running command [junos]" {
+    run ansible-playbook -v -i $INVENTORY playbook.yml \
+        -e @files/60_evars_junos_dryrun_interfaces.yml \
+        -e @ref/junos0_junos_intf_ref.out
     [[ ${status} -eq 0 ]]
 }
 

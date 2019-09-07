@@ -1,0 +1,12 @@
+---
+_hosts:
+  - junos
+
+rntebr_mode: dump
+rntebr_command: show interfaces terse
+
+# output file path
+rntebr_dump_path: >-
+  ref/{{ inventory_hostname }}_{{ ansible_network_os }}_intf_ref.out
+
+# vim:sw=2:ts=2:et:
