@@ -1,0 +1,17 @@
+ssato@x1-carbon-gen6% ./tests.bats                    ~/repos/public/github.com/ssato/ansible-role-nw-test-existence-by-regex.git/tests
+ ✓ Lint all yaml files
+ ✓ Check styles of all playbook files
+ ✓ Test if we can access target network nodes
+ ✓ Test dumping version info [ios]
+ ✓ Test dumping version info [junos]
+ ✓ Test version info was shown in the result w/o running command [ios]
+ ✓ Test version info was shown in the result w/o running command [junos]
+ ✓ Test version info was gotten successfully [ios]
+ ✓ Test version info was gotten successfully [junos]
+ ✓ Test dumping interfaces info [ios]
+ ✓ Test dumping interfaces info [junos]
+ ✓ Test interfaces was found in the result w/o running command [ios]
+ ✓ Test interfaces was found in the result w/o running command [junos]
+
+13 tests, 0 failures
+ssato@x1-carbon-gen6%                                 ~/repos/public/github.com/ssato/ansible-role-nw-test-existence-by-regex.git/tests
