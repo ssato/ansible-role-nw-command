@@ -2,7 +2,8 @@
 - hosts: all
   gather_facts: false
   tasks:
-    - debug:
+    - name: Just dump some varibles
+      debug:
         var: inventory_hostname
 
 # vim:sw=2:ts=2:et:
