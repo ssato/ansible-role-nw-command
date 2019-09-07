@@ -46,15 +46,18 @@ Other variables should not needed to be customized for most cases.
 
 see also defaults/main.yml for default definitions of each variables and tests/files/\*_evars_\*.yml for .
 
-## Example Playbook
+Example Playbook
+==================
 
 see tests/playbook.yml
 
-## License
+License
+=========
 
 MIT
 
-## Author
+Author
+=========
 
 Satoru SATOH `ssato@Github <https://github.com/ssato>`_
 
