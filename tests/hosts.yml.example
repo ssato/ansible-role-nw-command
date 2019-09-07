@@ -1,0 +1,41 @@
+---
+all:
+  vars:
+    # ansible_python_interpreter: auto_silent
+    ansible_python_interpreter: /usr/bin/python3
+    ansible_user: xxxxx
+    ansible_ssh_private_key_file: /home/ssato/.ssh/keys/aws-private.pem
+    # ansible_ssh_args: -o ProxyCommand='ssh -W %h:%p xxxx@xxx.xxx.xxx.xxx'
+    ansible_command_timeout: 300
+    ansible_timeout: 300
+
+  hosts:
+    localhost:
+      ansible_host: 127.0.0.1
+      ansible_connection: local
+
+  children:
+    ios:
+      hosts:
+        ios0:
+          ansible_host: xxx.xxx.xxx.xxx
+
+      # yamllint disable-line rule:line-length
+      # .. seealso:: https://docs.ansible.com/ansible/latest/network/user_guide/platform_ios.html
+      vars:
+        ansible_network_os: ios
+        ansible_connection: network_cli
+
+    junos:
+      hosts:
+        junos0:
+          ansible_host: xxx.xxx.xxx.xxx
+
+      # yamllint disable-line rule:line-length
+      # .. seealso:: https://docs.ansible.com/ansible/latest/network/user_guide/platform_junos.html
+      vars:
+        ansible_network_os: junos
+        # network_cli | netconf
+        ansible_connection: netconf
+
+# vim:sw=2:ts=2:et:
