@@ -56,6 +56,13 @@ ios_command:
   retries: 10
   wait_for: []
 
+# iosxr_command:
+iosxr_command:
+  interval: 1
+  match: all
+  retries: 10
+  wait_for: []
+
 # junos:
 junos_command:
   display: >-
