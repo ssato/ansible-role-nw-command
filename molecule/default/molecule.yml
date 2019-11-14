@@ -1,0 +1,35 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: podman
+lint:
+  name: yamllint
+platforms:
+  - name: centos-7
+    image: centos:7
+    tmpfs:
+      - /tmp
+provisioner:
+  name: ansible
+  # .. todo::
+  # env:
+  #   ANSIBLE_ROLES_PATH: ../../
+  lint:
+    name: ansible-lint
+  inventory:
+    group_vars:
+      all:
+        rntebr_mode: dryrun
+        rntebr_targets_should_be_found: true
+        rntebr_targets_patterns:
+          - .*Loopback0.*up.*up
+
+scenario:
+  name: default
+verifier:
+  name: testinfra
+  lint:
+    name: flake8
+
+# vim:sw=2:ts=2:et:
