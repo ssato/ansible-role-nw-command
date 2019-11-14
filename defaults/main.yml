@@ -1,7 +1,7 @@
 ---
 # .. note:: rntebr is an abbreviation of 'role-nw-test-existence-by-regex'
 #
-# Mode = 'dump' | 'dryrun' | * 
+# Mode = 'dump' | 'dryrun' | *
 # - dump: Dump mode to save reference data
 # - dryrun: Test (dryrun) mode
 # - normal or *: Normal mode to run commands and tests
