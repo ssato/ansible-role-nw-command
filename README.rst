@@ -2,7 +2,13 @@
 ssato.nw_test_existence_by_regex
 ===================================
 
-[![Build Status](https://img.shields.io/travis/ssato/ansible-role-nw-test-existence-by-regex.png)](https://travis-ci.org/ssato/ansible-role-nw-test-existence-by-regex) [![Ansible Galaxy](https://img.shields.io/ansible/role/44621.svg)](https://galaxy.ansible.com/ssato/nw_test_existence_by_regex)
+.. image:: https://img.shields.io/travis/ssato/ansible-role-nw-test-existence-by-regex.png
+   :target: https://travis-ci.org/ssato/ansible-role-nw-test-existence-by-regex
+   :alt: [Test Status]
+
+.. image:: https://img.shields.io/ansible/role/44621.svg
+   :target: https://galaxy.ansible.com/ssato/nw_test_existence_by_regex
+   :alt: [Ansible Galaxy]
 
 An ansible role to test existence of target objects in network nodes.
 
