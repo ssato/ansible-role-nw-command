@@ -7,6 +7,7 @@
 function setup_workdir () {
     # export TESTS_OUT_DIR=$(mktemp --directory)
     export INVENTORY=${INVENTORY:-hosts.yml}
+    export NW_TARGETS_AVAIL=${NW_TARGETS_AVAIL:-no}  # yes | no
 }
 
 function prune_workdir () {
@@ -15,11 +16,16 @@ function prune_workdir () {
 }
 
 function setup () {
+    cd $BATS_TEST_DIRNAME
     setup_workdir
 }
 
 function teardown () {
     prune_workdir
+}
+
+function skip_tests_if_targets_are_not_available () {
+    [[ ${NW_TARGETS_AVAIL} == 'yes' ]] || skip "Skip tests because targets are not available"
 }
 
 @test "Lint all yaml files" {
@@ -34,18 +40,21 @@ function teardown () {
 
 # 10: test access
 @test "Test if we can access target network nodes" {
+    skip_tests_if_targets_are_not_available
     run ansible-playbook -v -i $INVENTORY test_access.yml
     [[ ${status} -eq 0 ]]
 }
 
 # 20: dump
 @test "Test dumping version info [ios]" {
+    skip_tests_if_targets_are_not_available
     run ansible-playbook -v -i $INVENTORY playbook.yml \
         -e @files/20_evars_ios_dump.yml
     [[ ${status} -eq 0 ]]
 }
 
 @test "Test dumping version info [junos]" {
+    skip_tests_if_targets_are_not_available
     run ansible-playbook -v -i $INVENTORY playbook.yml \
         -e @files/20_evars_junos_dump.yml
     [[ ${status} -eq 0 ]]
@@ -68,12 +77,14 @@ function teardown () {
 
 # 40: normal
 @test "Test version info was gotten successfully [ios]" {
+    skip_tests_if_targets_are_not_available
     run ansible-playbook -v -i $INVENTORY playbook.yml \
         -e @files/40_evars_ios_normal.yml
     [[ ${status} -eq 0 ]]
 }
 
 @test "Test version info was gotten successfully [junos]" {
+    skip_tests_if_targets_are_not_available
     run ansible-playbook -v -i $INVENTORY playbook.yml \
         -e @files/40_evars_junos_normal.yml
     [[ ${status} -eq 0 ]]
@@ -81,12 +92,14 @@ function teardown () {
 
 # 50: dump (interfaces)
 @test "Test dumping interfaces info [ios]" {
+    skip_tests_if_targets_are_not_available
     run ansible-playbook -v -i $INVENTORY playbook.yml \
         -e @files/50_evars_ios_dump_interfaces.yml
     [[ ${status} -eq 0 ]]
 }
 
 @test "Test dumping interfaces info [junos]" {
+    skip_tests_if_targets_are_not_available
     run ansible-playbook -v -i $INVENTORY playbook.yml \
         -e @files/50_evars_junos_dump_interfaces.yml
     [[ ${status} -eq 0 ]]
