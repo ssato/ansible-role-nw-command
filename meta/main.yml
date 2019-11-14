@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: nw-test-existence-by-regex
+  role_name: nw_test_existence_by_regex
   author: Satoru SATOH
   description: |
     Test existence of target objects by regular expression in network nodes.

@@ -1,5 +1,5 @@
 ===================================
-ssato.nw-test-existence-by-regex
+ssato.nw_test_existence_by_regex
 ===================================
 
 An ansible role to test existence of target objects in network nodes.

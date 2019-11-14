@@ -1,5 +1,5 @@
 ---
-# .. note:: rntebr is an abbreviation of 'role-nw-test-existence-by-regex'
+# .. note:: rntebr is an abbreviation of 'role_nw_test_existence_by_regex'
 #
 # Mode = 'dump' | 'dryrun' | *
 # - dump: Dump mode to save reference data
