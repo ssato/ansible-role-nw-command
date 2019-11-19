@@ -1,22 +1,20 @@
 ---
-sudo: required
 language: python
+dist: xenial
 python:
   - 2.7
-
-matrix:
-  include:
-    - python: 3.7
-      dist: xenial
-      sudo: true
+  - 3.7
 
 services:
   - docker
+
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y bash
+
 install:
   - pip install tox-travis
+
 script:
   - tox
 
